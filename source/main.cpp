@@ -1,4 +1,5 @@
 ﻿#include "AIE.h"
+#include "Player.h"
 #include <iostream>
 
 
@@ -36,6 +37,7 @@ void UpdateMainMenu();
 void UpdateGameState(float a_deltaTime);
 void CreateEnemies();
 
+Player player;
 struct Enemy
 {
 	unsigned int spriteID;
@@ -63,73 +65,6 @@ struct Enemy
 Enemy alienShips[24];
 
 
-
-
-
-struct PlayerCannon
-	{
-		unsigned int spriteID;
-		
-		float speed;
-		float width;
-		float height;
-		void SetSize(float a_width, float a_height)
-		{
-			width = a_width;
-			height = a_height;
-		}
-
-
-		float x ;
-		float y ;
-		void SetPosition(float a_x, float a_y)
-		{
-			x = a_x;
-			y = a_y;
-
-		}
-
-		unsigned int moveLeftKey;
-		unsigned int moveRightKey;
-		void SetMovementKeys(unsigned int a_moveLeft, unsigned int a_moveRight)
-		{
-			moveLeftKey = a_moveLeft;
-			moveRightKey = a_moveRight;
-		}
-		
-		unsigned int leftMovementExtreme;
-		unsigned int rightMovementExtreme;
-		void SetMovementExtreme(unsigned int a_leftExtreme, unsigned int a_rightExtreme)
-		{
-			leftMovementExtreme = a_leftExtreme;
-			rightMovementExtreme = a_rightExtreme;
-		}
-		
-		void Move(float a_timeStep, float a_speed)
-		{
-			if (IsKeyDown(moveLeftKey))
-			{
-				x -= a_timeStep * a_speed;
-				if (x < (leftMovementExtreme + width*.5f))
-				{
-					x = (leftMovementExtreme + width*.5f);
-				}
-			}
-			if (IsKeyDown(moveRightKey))
-			{
-				x += a_timeStep * a_speed;
-				if (x >(rightMovementExtreme - width*.5f))
-				{
-					x = (rightMovementExtreme - width*.5f);
-				}
-			}
-			MoveSprite(spriteID, x, y);
-		}
-
-
-}; 
-
-	PlayerCannon player;
 
 enum GAMESTATES
 {
