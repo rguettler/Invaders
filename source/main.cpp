@@ -1,8 +1,7 @@
 ﻿#include "AIE.h"
 #include "Player.h"
+#include "Enemy.h"
 #include <iostream>
-
-
 
 const int iScreenWidth = 672;
 const int iScreenHeight = 780;  //SCREEN SIZE BITCHES
@@ -38,30 +37,7 @@ void UpdateGameState(float a_deltaTime);
 void CreateEnemies();
 
 Player player;
-struct Enemy
-{
-	unsigned int spriteID;
 
-	float speed;
-	float width = playerWidth;
-	float height = playerHeight;
-	void SetSize(float a_width, float a_height)
-	{
-		width = a_width;
-		height = a_height;
-	}
-
-	float x;
-	float y;
-	/*void SetPosition(float a_x, float a_y)
-	{
-		x = a_x;
-		y = a_y;
-
-	}*/
-	
-};
-//Enemy enemy;
 Enemy alienShips[24];
 
 
@@ -178,8 +154,10 @@ void CreateEnemies()
 {
 	float eX = iScreenWidth * 0.2f;
 	float eY = iScreenHeight * 0.8f;
+	
 	for (int i = 0; i < 24; ++i)
 	{
+		alienShips[i].SetSize(64, 32);
 		alienShips[i].spriteID = CreateSprite(enemyInvaders, alienShips[i].width, alienShips[i].height, true);
 		MoveSprite(alienShips[i].spriteID, eX, eY);
 		alienShips[i].x = eX;
